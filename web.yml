@@ -5,7 +5,7 @@
   tasks:
   - name: install ftpserver
     yum:
-      name: "{{ item }}"
+      name: ['vsftpd'] 
       state: installed
     with_items:
       - vsftpd
