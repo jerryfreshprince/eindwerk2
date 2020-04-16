@@ -1,0 +1,24 @@
+---
+- hosts: localhost
+  remote_user: root
+  vars:
+  tasks:
+  - name: install ftpserver
+    yum:
+      name: "{{ item }}"
+      state: installed
+    with_items:
+      - vsftpd
+
+  - name: set ftpserver to be enabled at boot en start it
+    systemd:
+      name: mariadb
+      enabled: yes
+      state: started
+      daemon_reload: yes
+
+  - name: create ansible user
+    user:
+      name: ansible
+      state: present
+
